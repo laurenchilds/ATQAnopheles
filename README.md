@@ -1,5 +1,26 @@
 # ATQAnopheles
-Code for Mathematical Model in ‘Exposing Anopheles mosquitoes to antimalarials blocks transmission of Plasmodium parasites’ by Paton et al.
+Code for Mathematical Model in ‘Exposing Anopheles mosquitoes to antimalarials blocks Plasmodium parasites transmission’ by Paton et al. Data aggregation was performed in R. All Simulations were performed in Matlab 2016a.
+
+
+Data extraction:
+
+
+2015 Africa 1km Population dataset was downloaded from WorldPop in tif format here: http://www.worldpop.org.uk/data/summary/?doi=10.5258/SOTON/WP00004
+
+PfPR 2-10 dataset was downloaded from the Malaria Atlas Project Explorer page: 
+https://map.ox.ac.uk/explorer/#/
+This can be accessed under: Surfaces > Malaria Risk > Endemicity > Plasmodium faciparum PfPR 2-10
+We used the 2015 data: 2015_Nature_Africa_PR.2015.tif
+
+ITN coverage dataset was downloaded from the Malaria Atlas Project Explorer page: 
+https://map.ox.ac.uk/explorer/#/
+This can be accessed under: Surfaces > Malaria Risk > Intervention > ITN coverage
+We used the 2015 data: 2015_Nature_Africa_ITN.2015.tif
+
+IR data on Pyrethroid resistance in Anopheles were given on request from IR mapper: http://www.irmapper.com/ and saved as IR_points_anopheles_pyrethroids.csv 
+
+
+Code Files:
 
 
 ATQ.m
@@ -48,3 +69,7 @@ Calculates the effectiveness of insecticide alone and with ATQ at prevalence, in
 
 RunATQSensitivity.m
 Calculates the enhanced effectiveness of insecticide with ATQ relative to insecticide alone while varying prevalence (x-axis), insecticide resistance (color of bars) and coverage (subplots). Code for Extended Data Figure 3.
+
+
+SpatialLayers.R
+Opens and aggregates data on parasite rate in 2-10 year olds, insecticide-treated bed net coverage, and population. Extracts data in 5km-by-5km grid squares where insecticide resistance has been tested. Requires 2015_Nature_Africa_PR.2015.tif, 2015_Nature_Africa_ITN.2015.tif, AFR_PPP_2015_adj_v2.tif, and IR_points_anopheles_pyrethroids.csv.
