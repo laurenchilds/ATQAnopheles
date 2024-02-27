@@ -1,5 +1,4 @@
 library(raster)
-library(rgdal)
 library(sp)
 library(dplyr)
 
@@ -12,8 +11,9 @@ Pop_lowres <- aggregate(Pop, fact=(res(ITN)[1]/res(Pop)[1]), fun=sum)
 Pop_stackable <- resample(Pop_lowres, ITN, method = 'bilinear')
 Pop_clean <- mask(Pop_stackable, ITN)
 
-# binned PfPR layer: PfPR=0 labeled "0", PfPR >0-10% labeled "1", 10-20% labeled "2"...
-PfPRbin <- reclassify(PfPR, c(0,0.1,1,  0.1,0.2,2, 0.2,0.3,3,  0.3,0.4,4, 0.4,0.5,5, 0.5,0.6,6, 0.6,0.7,7, 0.7,0.8,8, 0.8,0.9,9)) 
+# categorical PfPR layer: PfPR=0 labeled "0", PfPR >0-10% labeled "1", 10-20% labeled "2"...
+PfPRbin <- reclassify(PfPR, c(0,0.1,1,  0.1,0.2,2, 0.2,0.3,3,  0.3,0.4,4, 
+                              0.4,0.5,5, 0.5,0.6,6, 0.6,0.7,7, 0.7,0.8,8, 0.8,0.9,9)) 
 Africa_stack <- stack(Pop_clean, ITN, PfPR, PfPRbin)
 
 IR_points <- read.csv("IR_points_anopheles_pyrethroids.csv", header = TRUE, sep = ",")
